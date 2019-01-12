@@ -140,6 +140,7 @@ class USBMap:
         return "1022_xxxx"
 
     def get_ports(self, ioreg_text = None):
+        print("get ports")
         if os.path.exists("usb.txt"):
             with open ("usb.txt", "r") as f:
                 ioreg_text = f.read()
@@ -153,9 +154,11 @@ class USBMap:
                 l = line.split("+-o ")[1].split(" ")[0]
                 c = line.split("<class ")[1].split(",")[0]
                 matched.append({"name":l, "type":c})
+                print(matched)
         return matched
 
     def get_by_device(self, matched = None):
+        print("get_by_device")
         if not matched:
             matched = self.get_ports()
         # Get the system_profiler output, load as plist data, and search for addresses
@@ -179,6 +182,7 @@ class USBMap:
         return text
 
     def get_by_port(self):
+        print("get_by_port")
         p = self.get_ports()
         d = self.get_by_device(p)
         usb = {}
