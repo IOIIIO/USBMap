@@ -478,7 +478,7 @@ class USBMap:
                 },
                 "XHC":{
                     "top":0
-                }
+                },
                 "XHC1":{
                     "top":0
                 }
