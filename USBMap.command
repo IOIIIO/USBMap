@@ -129,12 +129,12 @@ class USBMap:
             if "device-id" in line:
                 try:
                     i = line.split("<")[1].split(">")[0][:4]
-                    return "8086_"+i[-2:]+i[:2]
+                    return "1002_"+i[-2:]+i[:2]
                 except:
                     # Issues - break
                     break
         # Not found, or issues - return generic
-        return "8086_xxxx"
+        return "1002_xxxx"
 
     def get_ports(self, ioreg_text = None):
         if os.path.exists("usb.txt"):
