@@ -18,7 +18,7 @@ class USBMap:
         self.sep_ssdt = True # True = separate EC/USBX/UIAC SSDTs, False = All in one SSDT
         self.scripts = "Scripts"
         self.output  = "Results"
-        self.usb_re = re.compile("(SS|SSP|HS|HP|PR|USR)[a-fA-F0-9]{1,2}@[a-fA-F0-9]{1,}")
+        self.usb_re = re.compile("(SS|SSP|HS|HP|PR|USR|PO)[a-fA-F0-9]{1,2}@[a-fA-F0-9]{1,}")
         self.usb_dict = {}
         self.xch_devid = self.get_xhc_devid()
         self.min_uia_v = "0.7.0"
