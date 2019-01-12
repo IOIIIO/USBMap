@@ -124,7 +124,7 @@ class USBMap:
 
     def get_xhc_devid(self):
         # attempts to get the xhc dev id
-        ioreg_text = self.r.run({"args":["ioreg","-p","IODeviceTree", "-n", "XHC0@3"]})[0]
+        ioreg_text = self.r.run({"args":["ioreg","-p","IODeviceTree", "-n", "XHC0@0,3"]})[0]
         for line in ioreg_text.split("\n"):
             if "device-id" in line:
                 try:
