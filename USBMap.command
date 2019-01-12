@@ -149,6 +149,7 @@ class USBMap:
     def get_ptxh_devid(self):
         # attempts to get the xhc dev id
         ioreg_text = self.r.run({"args":["ioreg","-p","IODeviceTree", "-n", "XHC1@0"]})[0]
+        print("ptxh devid")
         for line in ioreg_text.split("\n"):
             if "device-id" in line:
                 print(line)
@@ -174,7 +175,7 @@ class USBMap:
         matched = []
         for line in ioreg_text.split("\n"):
             match = self.usb_re.search(line)
-            if match and "@6" or "@0" in line and "USB" in line and not "HS15" in line:
+            if match and "@0" in line and "USB" in line and not "HS15" in line:
                 # format the line
                 l = line.split("+-o ")[1].split(" ")[0]
                 c = line.split("<class ")[1].split(",")[0]
