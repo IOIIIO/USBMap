@@ -236,7 +236,7 @@ class USBMap:
                 pnum = int(m.split("@")[1][:3], 16)
                 print(pnum)
                 # Find out which controller we're on
-                if pnum > xhc_start and pnum < eh2_start:
+                if pnum > xhc0_start and pnum < eh2_start:
                     # XHC Controller
                     ct = "XHC"
                     port = pnum - xhc_start
