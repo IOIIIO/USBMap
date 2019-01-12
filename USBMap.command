@@ -38,6 +38,13 @@ class USBMap:
                 "CFBundleIdentifier" : "com.apple.driver.AppleUSBHostMergeProperties"
                 # "kConfigurationName" : "XHC",
                 # "kIsXHC" : True
+            },
+            "XHC1": {
+                "IONameMatch" : "PTXH",
+                "IOProviderClass" : "AppleUSBXHCIPCI",
+                "CFBundleIdentifier" : "com.apple.driver.AppleUSBHostMergeProperties"
+                # "kConfigurationName" : "XHC",
+                # "kIsXHC" : True
             }, 
             "EH01": {
                 "IONameMatch" : "EH01",
@@ -472,10 +479,13 @@ class USBMap:
                 "XHC":{
                     "top":0
                 }
+                "XHC1":{
+                    "top":0
+                }
             }
         for u in self.sort(p):
             c = p[u]["controller"]
-            if not c in ["XHC","EH01","EH02","EH01-internal-hub","EH02-internal-hub"]:
+            if not c in ["XHC","XHC1","EH01","EH02","EH01-internal-hub","EH02-internal-hub"]:
                 # Not valid - skip
                 continue
             # Count up
