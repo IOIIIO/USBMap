@@ -149,7 +149,7 @@ class USBMap:
         matched = []
         for line in ioreg_text.split("\n"):
             match = self.usb_re.search(line)
-            if match and "@1" in line and "USB" in line and not "HS15" in line:
+            if match and "@6" in line and "USB" in line and not "HS15" in line:
                 # format the line
                 l = line.split("+-o ")[1].split(" ")[0]
                 c = line.split("<class ")[1].split(",")[0]
