@@ -229,7 +229,7 @@ class USBMap:
                 # XHC  starts at 0x14
                 # EH02 starts at 0x1A
                 # EH01 starts at 0x1D
-                xhc_start = int("0x000", 16)
+                xhc0_start = int("0x00", 16)
                 eh2_start = int("0x1A0", 16)
                 eh1_start = int("0x1D0", 16)
                 # Get the hex value - but limit to 3 spaces
@@ -248,7 +248,7 @@ class USBMap:
                     ty = 0
                 else:
                     # EH01 Controller
-                    ct = "EH01"
+                    ct = "XHC0"
                     port = pnum - eh1_start
                     ty = 0
             if not name in usb:
