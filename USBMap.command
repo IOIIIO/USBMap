@@ -21,6 +21,7 @@ class USBMap:
         self.usb_re = re.compile("(SS|SSP|HS|HP|PR|USR|PO)[a-fA-F0-9]{1,2}@[a-fA-F0-9]{1,}")
         self.usb_dict = {}
         self.xch_devid = self.get_xhc_devid()
+        self.ptxh_devid = self.get_ptxh_devid()
         self.min_uia_v = "0.7.0"
         self.plist = "./Scripts/USB.plist"
         self.disc_wait = 5
@@ -132,6 +133,21 @@ class USBMap:
     def get_xhc_devid(self):
         # attempts to get the xhc dev id
         ioreg_text = self.r.run({"args":["ioreg","-p","IODeviceTree", "-n", "XHC0@0,3"]})[0]
+        for line in ioreg_text.split("\n"):
+            if "device-id" in line:
+                print(line)
+                try:
+                    i = line.split("<")[1].split(">")[0][:4]
+                    return "1022_"+i[-2:]+i[:2]
+                except:
+                    # Issues - break
+                    break
+        # Not found, or issues - return generic
+        return "1022_xxxx"
+
+    def get_ptxh_devid(self):
+        # attempts to get the xhc dev id
+        ioreg_text = self.r.run({"args":["ioreg","-p","IODeviceTree", "-n", "PTXH@0"]})[0]
         for line in ioreg_text.split("\n"):
             if "device-id" in line:
                 print(line)
@@ -1176,7 +1192,7 @@ DefinitionBlock ("", "SSDT", 2, "hack", "_UIAC", 0)
         # the controllers and format accordingly
         for c in self.sort(ports):
             # Got a controller, let's add it
-            d = c if not c == "XHC" else self.xch_devid
+            d = c if not c == "XHC" else self.xch_devid && self.ptxh_devid
             # Set controller to HUB1/2 if needed
             if d in ["EH01-internal-hub","EH02-internal-hub"]:
                 d = "HUB"+c[3]
