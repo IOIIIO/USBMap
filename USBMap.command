@@ -328,7 +328,7 @@ class USBMap:
                     "total":0,
                     "selected":0
                 },
-                "XHC":{
+                "XHC0":{
                     "total":0,
                     "selected":0
                 }
