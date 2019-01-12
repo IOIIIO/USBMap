@@ -33,7 +33,7 @@ class USBMap:
         # https://github.com/RehabMan/OS-X-USB-Inject-All/blob/master/USBInjectAll/USBInjectAll-Info.plist
         self.usb_plist = { 
             "XHC": {
-                "IONameMatch" : "XHC",
+                "IONameMatch" : "XHC0",
                 "IOProviderClass" : "AppleUSBXHCIPCI",
                 "CFBundleIdentifier" : "com.apple.driver.AppleUSBHostMergeProperties"
                 # "kConfigurationName" : "XHC",
@@ -203,7 +203,7 @@ class USBMap:
                 # XHC  starts at 0x14
                 # EH02 starts at 0x1A
                 # EH01 starts at 0x1D
-                xhc_start = int("0x140", 16)
+                xhc_start = int("0x030", 16)
                 eh2_start = int("0x1A0", 16)
                 eh1_start = int("0x1D0", 16)
                 # Get the hex value - but limit to 3 spaces
