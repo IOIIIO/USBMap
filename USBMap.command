@@ -21,7 +21,7 @@ class USBMap:
         self.usb_re = re.compile("(SS|SSP|HS|HP|PR|USR|PO)[a-fA-F0-9]{1,2}@[a-fA-F0-9]{1,}")
         self.usb_dict = {}
         self.xch_devid = self.get_xhc_devid()
-        self.ptxh_devid = self.get_ptxh_devid()
+        #self.ptxh_devid = self.get_ptxh_devid()
         self.devid = self.get_devid()
         self.min_uia_v = "0.7.0"
         self.plist = "./Scripts/USB.plist"
