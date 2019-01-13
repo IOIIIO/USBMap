@@ -22,7 +22,7 @@ class USBMap:
         self.usb_dict = {}
         self.xch_devid = self.get_xhc_devid()
         #self.ptxh_devid = self.get_ptxh_devid()
-        self.devid = self.get_devid()
+        #self.devid = self.get_devid()
         self.min_uia_v = "0.7.0"
         self.plist = "./Scripts/USB.plist"
         self.disc_wait = 5
