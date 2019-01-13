@@ -231,6 +231,7 @@ class USBMap:
                 eh1_start = int("0x1D0", 16)
                 # Get the hex value - but limit to 3 spaces
                 pnum = int(m.split("@")[1][:3], 16)
+                print(pnum)
                 # Find out which controller we're on
                 if pnum > xhc_start and pnum < eh2_start:
                     # XHC Controller
