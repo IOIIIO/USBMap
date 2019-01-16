@@ -41,13 +41,6 @@ class USBMap:
                 # "kConfigurationName" : "XHC",
                 # "kIsXHC" : True
             },
-            "XHC1": {
-                "IONameMatch" : "XHC1",
-                "IOProviderClass" : "AppleUSBXHCIPCI",
-                "CFBundleIdentifier" : "com.apple.driver.AppleUSBHostMergeProperties"
-                # "kConfigurationName" : "XHC",
-                # "kIsXHC" : True
-            }, 
             "EH01": {
                 "IONameMatch" : "EH01",
                 "IOProviderClass" : "AppleUSBEHCIPCI",
@@ -131,25 +124,9 @@ class USBMap:
                         for result in self.gen_dict_extract(value, d):
                             yield result
 
-    #def get_xhc_devid(self):
-    #    # attempts to get the xhc dev id
-    #    ioreg_text = self.r.run({"args":["ioreg","-p","IODeviceTree", "-n", "XHC0@0,3"]})[0]
-    #    for line in ioreg_text.split("\n"):
-    #        if "device-id" in line:
-    #            print(line)
-    #            try:
-    #                i = line.split("<")[1].split(">")[0][:4]
-    #                return "1022_"+i[-2:]+i[:2]
-    #            except:
-    #                # Issues - break
-    #                break
-    #    # Not found, or issues - return generic
-    #    return "1022_xxxx"
-
     def get_xhc_devid(self):
         # attempts to get the xhc dev id
-        ioreg_text = self.r.run({"args":["ioreg","-p","IODeviceTree", "-n", "XHC1@0"]})[0]
-        print("ptxh devid")
+        ioreg_text = self.r.run({"args":["ioreg","-p","IODeviceTree", "-n", "XHC0@0,3"]})[0]
         for line in ioreg_text.split("\n"):
             if "device-id" in line:
                 print(line)
@@ -161,6 +138,22 @@ class USBMap:
                     break
         # Not found, or issues - return generic
         return "1022_xxxx"
+
+    #def get_xhc_devid(self):
+    #    # attempts to get the xhc dev id
+    #    ioreg_text = self.r.run({"args":["ioreg","-p","IODeviceTree", "-n", "XHC1@0"]})[0]
+    #    print("ptxh devid")
+    #    for line in ioreg_text.split("\n"):
+    #        if "device-id" in line:
+    #            print(line)
+    #            try:
+    #                i = line.split("<")[1].split(">")[0][:4]
+    #                return "1022_"+i[-2:]+i[:2]
+    #            except:
+    #                # Issues - break
+    #                break
+    #    # Not found, or issues - return generic
+    #    return "1022_xxxx"
 
     def get_ports(self, ioreg_text = None):
         if os.path.exists("usb.txt"):
