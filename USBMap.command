@@ -228,7 +228,7 @@ class USBMap:
                 # Find out which controller we're on
                 if pnum > xhc_start and pnum < eh2_start:
                     # XHC Controller
-                    ct = "XHC"
+                    ct = "PTXH"
                     port = pnum - xhc_start
                     ty = 3
                 elif pnum > eh2_start and pnum < eh1_start:
@@ -238,7 +238,7 @@ class USBMap:
                     ty = 0
                 else:
                     # EH01 Controller
-                    ct = "EH01"
+                    ct = "XHC0"
                     port = pnum - eh1_start
                     ty = 0
             if not name in usb:
